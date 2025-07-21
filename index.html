@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Study - Participant Recruitment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #4f46e5;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h3 {
+            color: #6366f1;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .section h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .participant-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .participant-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #4f46e5;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .participant-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .participant-card h4 {
+            color: #4f46e5;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .criteria-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .criteria-section {
+            margin-bottom: 2rem;
+        }
+
+        .criteria-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .criteria-section h4 {
+            color: #059669;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(5, 150, 105, 0.1);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .criteria-section.exclusion h4 {
+            color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .criteria-item {
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 8px;
+            border-left: 3px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .criteria-item:hover {
+            border-left-color: #4f46e5;
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #059669;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 1.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #f9fafb;
+        }
+
+        .contact-info {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-info h3 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .participant-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .content {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Research Study Participation</h1>
+                    <p>Join our masters dissertation research study and contribute to advancing knowledge in your field</p>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section">
+                    <h2><span class="icon">📋</span>About This Study</h2>
+                    <p>This research study is being conducted as part of a Masters dissertation at [University Name]. The study aims to investigate [brief description of your research topic and objectives]. Your participation will contribute valuable insights to our understanding of [research area].</p>
+                    <p>The study involves [description of what participants will be asked to do, e.g., completing questionnaires, participating in interviews, etc.] and is expected to take approximately [duration] to complete.</p>
+                    <p>All data collected will be kept strictly confidential and used solely for research purposes. Participation is entirely voluntary, and you may withdraw at any time without penalty.</p>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">👥</span>Types of Participants We're Looking For</h2>
+                    <div class="participant-cards">
+                        <div class="participant-card">
+                            <h4>Group 1: [Participant Type]</h4>
+                            <p>We are seeking individuals who [description of first participant group, their characteristics, background, or specific criteria that define this group].</p>
+                        </div>
+                        <div class="participant-card">
+                            <h4>Group 2: [Participant Type]</h4>
+                            <p>We are looking for participants who [description of second participant group and what makes them suitable for your study].</p>
+                        </div>
+                        <div class="participant-card">
+                            <h4>Group 3: [Participant Type]</h4>
+                            <p>This group consists of individuals who [description of third participant group and their relevance to your research].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">✅</span>Eligibility Criteria</h2>
+                    <div class="criteria-list">
+                        <div class="criteria-section">
+                            <h4>✓ Inclusion Criteria</h4>
+                            <p>You may be eligible to participate if you meet the following criteria:</p>
+                            <div class="criteria-item">Age: [age range, e.g., 18-65 years]</div>
+                            <div class="criteria-item">Language: [language requirements, e.g., fluent in English]</div>
+                            <div class="criteria-item">Location: [geographic requirements if applicable]</div>
+                            <div class="criteria-item">Experience: [relevant experience or background needed]</div>
+                            <div class="criteria-item">Availability: [time commitment requirements]</div>
+                            <div class="criteria-item">[Add any other specific inclusion criteria for your study]</div>
+                        </div>
+                        
+                        <div class="criteria-section exclusion">
+                            <h4>✗ Exclusion Criteria</h4>
+                            <p>Unfortunately, you may not be able to participate if any of the following apply:</p>
+                            <div class="criteria-item">[Specific conditions or circumstances that would exclude participation]</div>
+                            <div class="criteria-item">[Any conflicts of interest or competing commitments]</div>
+                            <div class="criteria-item">[Other exclusion criteria relevant to your study]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <div class="cta-content">
+                        <h2>Ready to Participate?</h2>
+                        <p>If you meet the eligibility criteria and are interested in contributing to this important research, we'd love to hear from you!</p>
+                        <a href="[INSERT_YOUR_SIGNUP_FORM_URL_HERE]" class="cta-button">Sign Up to Participate</a>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">The signup process takes less than 5 minutes</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Questions or Need More Information?</h3>
+                    <p><strong>Principal Investigator:</strong> [Your Name]</p>
+                    <p><strong>Institution:</strong> [University/Institution Name]</p>
+                    <p><strong>Email:</strong> <a href="mailto:[your.email@university.edu]">[your.email@university.edu]</a></p>
+                    <p><strong>Supervisor:</strong> [Supervisor Name] - <a href="mailto:[supervisor.email@university.edu]">[supervisor.email@university.edu]</a></p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #6b7280;">This study has been approved by the [Ethics Committee/IRB Name] - Reference: [Ethics Reference Number]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
